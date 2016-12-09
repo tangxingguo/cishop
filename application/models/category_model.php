@@ -61,4 +61,12 @@ class Category_model extends CI_Model
 		return $query->row_array();
 	}
 	
+	//更新
+	public  function update_cate($data, $cat_id)
+	{
+		//获取更新字段的id
+		$condition['cat_id'] = $cat_id;
+		return $this->db->where($condition)->update(self::TBL_CATE, $data);
+	}
+	
 }
