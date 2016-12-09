@@ -69,4 +69,18 @@ class Category_model extends CI_Model
 		return $this->db->where($condition)->update(self::TBL_CATE, $data);
 	}
 	
+	//删除
+	public function delete_cate($cat_id)
+	{
+		$condition['cat_id'] = $cat_id;
+		$query = $this->db->where($condition)->delete(self::TBL_CATE);
+		if($query && $this->db->affected_rows() > 0)
+		{
+			return true;
+		} else 
+		{
+			return false;
+		}
+	}
+	
 }

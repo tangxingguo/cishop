@@ -142,10 +142,39 @@ class Category extends Admin_Controller
 					$data['url'] = site_url('admin/category/edit').'/'.$cat_id;
 					$this->load->view('message.html', $data);
 				}
-				
 			}
 		}
-		
+	}
+	
+	//删除操作
+	public function delete()
+	{
+		//获取被删除的分类id
+		$cat_id = $this->uri->segment(4);
+		//如果不是底层分类，则不允许删除
+		$sub_cates = $this->category_model->list_cate($cat_id);
+		if(empty($sub_cates))
+		{
+			if($this->category_model->delete_cate($cat_id))
+			{
+				$data['message'] = '删除成功';
+				$data['wait'] = 3;
+				$data['url'] = site_url('admin/category/index');
+				$this->load->view('message.html', $data);
+			} else 
+			{
+				$data['message'] = '删除失败';
+				$data['wait'] = 3;
+				$data['url'] = site_url('admin/category/index');
+				$this->load->view('message.html', $data);
+			}
+		} else 
+		{
+			$data['message'] = '该分类下还包含其他分类，先删除其子分类';
+			$data['wait'] = 2;
+			$data['url'] = site_url('admin/category/index');
+			$this->load->view('message.html', $data);
+		}
 	}
 	
 	
