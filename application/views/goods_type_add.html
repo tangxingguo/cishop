@@ -3,23 +3,23 @@
 <head>
 <title>SHOP 管理中心 - 类型管理 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="styles/general.css" rel="stylesheet" type="text/css" />
-<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('application/views/styles/general.css');?>" rel="stylesheet" type="text/css" />
+  <link href="<?php echo base_url('application/views/styles/main.css');?>" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <h1>
-<span class="action-span"><a href="goods_type.php?act=list">商品类型列表</a></span>
+<span class="action-span"><a href="<?php echo site_url('admin/goodstype/index');?>">商品类型列表</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 新建商品类型 </span>
 <div style="clear:both"></div>
 </h1>
 
 <div class="main-div">
-  <form action="" method="post" name="theForm" onsubmit="return validate();">
+  <form action="<?php echo site_url('admin/goodstype/insert');?>" method="post" name="theForm" onsubmit="return validate();">
     <table cellspacing="1" cellpadding="3" width="100%">
       <tbody><tr>
         <td class="label">商品类型名称:</td>
-        <td><input type="text" name="cat_name" value="" size="40">
+        <td><input type="text" name="type_name" value="" size="40">
         <span class="require-field">*</span></td>
       </tr>
       <tr style="display:none">

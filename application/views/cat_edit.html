@@ -30,7 +30,7 @@
 						<option value="0">顶级分类</option>
 						<?php foreach($cates as $cate) : ?>
 						<option value="<?php echo $cate['cat_id'];?>">
-							<?php echo $current_cat['parent_id'] == $cate['cat_id'] ? 'selected' : '';?>
+							<?php echo $current_cat['parent_id'] == $cate['cat_id'] ? 'selected' : '';?>>
 							<?php echo str_repeat('&nbsp;&nbsp;',$cate['level'])?>
 							<?php echo $cate['cat_name'];?>
 						</option>
