@@ -15,4 +15,12 @@ class Attribute_model extends CI_Model
 		$query = $this->db->get(self::TBL_ATTR);
 		return $query->result_array();
 	}
+	
+	//获取指定类型下面所有的属性
+	public function get_arrs($type_id)
+	{
+		$condition['type_id'] = $type_id;
+		$query = $this->db->where($condition)->get(self::TBL_ATTR);
+		return $query->result_array();
+	}
 }
