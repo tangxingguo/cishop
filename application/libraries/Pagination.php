@@ -327,7 +327,8 @@ class CI_Pagination {
 		// Kill double slashes.  Note: Sometimes we can end up with a double slash
 		// in the penultimate link so we'll kill all double slashes.
 		$output = preg_replace("#([^:])//+#", "\\1/", $output);
-		$baseinfo = "总共 $this->total_rows 条记录，每页显示 $this->per_page 条，总计 $num_pages 页，当前是第 $this->cur_page 页";
+		$baseinfo = "总共 $this->total_rows 条记录，每页显示 
+		$this->per_page 条，总计 $num_pages 页，当前是第 $this->cur_page 页";
 		// Add the wrapper HTML if exists
 		$output = $baseinfo .'&nbsp;&nbsp;&nbsp;'. $this->full_tag_open.$output.$this->full_tag_close;
 

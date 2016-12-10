@@ -39,9 +39,9 @@
  */
 if ( ! function_exists('create_captcha'))
 {
-	function create_captcha($data = '',  $font_path = '')
+	function create_captcha($data = '', $font_path = '')
 	{
-		$defaults = array('word' => '', 'word_length' => 4, 'img_width' => '145', 'img_height' => '30', 'font_path' => '', 'expiration' => 7200);
+		$defaults = array('word' => '', 'word_length' => 4, 'img_width' => '150', 'img_height' => '30', 'font_path' => '', 'expiration' => 7200);
 
 		foreach ($defaults as $key => $val)
 		{
@@ -101,8 +101,8 @@ if ( ! function_exists('create_captcha'))
 		}
 
 		@closedir($current_dir);
-*/
-		// -----------------------------------
+
+*/		// -----------------------------------
 		// Do we have a "word" yet?
 		// -----------------------------------
 
@@ -228,20 +228,19 @@ if ( ! function_exists('create_captcha'))
 		//  Generate the image
 		// -----------------------------------
 
-// 		$img_name = $now.'.jpg';
+		// $img_name = $now.'.jpg';
 
-// 		ImageJPEG($im, $img_path.$img_name);
+		// ImageJPEG($im, $img_path.$img_name);
 
-// 		$img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\" \" />";
-
-		//直接输出
+		// $img = "<img src=\"$img_url$img_name\" width=\"$img_width\" height=\"$img_height\" style=\"border:0;\" alt=\" \" />";
+		#直接输出
 		header("Content-Type:image/jpeg");
 		imagejpeg($im);
-		
+
 		ImageDestroy($im);
-		//返回生成的验证码字符串
+		#返回生成的验证码字符串
 		return $word;
-// 		return array('word' => $word, 'time' => $now, 'image' => $img);
+		// return array('word' => $word, 'time' => $now, 'image' => $img);
 	}
 }
 

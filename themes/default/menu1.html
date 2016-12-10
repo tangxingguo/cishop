@@ -1,0 +1,56 @@
+<!-- Header Menu -->
+		<div class="shop_hd_menu">
+			<!-- 所有商品菜单 -->
+                        
+			<div class="shop_hd_menu_all_category shop_hd_menu_hover"><!-- 首页去掉 id="shop_hd_menu_all_category" 加上clsss shop_hd_menu_hover -->
+				<div class="shop_hd_menu_all_category_title"><h2 title="所有商品分类"><a href="javascript:void(0);">所有商品分类</a></h2><i></i></div>
+				<div id="shop_hd_menu_all_category_hd" class="shop_hd_menu_all_category_hd">
+					<ul class="shop_hd_menu_all_category_hd_menu clearfix">
+						<!-- 单个菜单项 -->
+						
+					<?php foreach ($cates as $k => $v):?>
+						<?php if ($k < 8) :?>
+						<li id="cat_1" class="">
+							<h3><a href="" title="男女服装"><?php echo $v['cat_name'];?></a></h3>
+							<div id="cat_1_menu" class="cat_menu clearfix" style="">
+								<?php foreach($v['child'] as $k => $v1) :?>
+								<dl class="clearfix">
+									<dt><a href="女装" href=""><?php echo $v1['cat_name'];?></a></dt>
+									<dd>
+										<?php foreach($v1['child'] as $k => $v2):?>
+										<a href=""><?php echo $v2['cat_name'];?></a>
+                                    	<?php endforeach;?>
+									</dd>
+								</dl>
+                                <?php endforeach;?>                        
+							</div>
+						</li>
+					<?php endif;?>
+					<?php endforeach;?>
+						<!-- 单个菜单项 End -->
+                                               
+                    <li class="more"><a href="">查看更多分类</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 所有商品菜单 END -->
+
+			<!-- 普通导航菜单 -->
+			<ul class="shop_hd_menu_nav">
+				<li class="current_link"><a href=""><span>首页</span></a></li>
+				<li class="link"><a href=""><span>团购</span></a></li>
+				<li class="link"><a href=""><span>品牌</span></a></li>
+				<li class="link"><a href=""><span>优惠卷</span></a></li>
+				<li class="link"><a href=""><span>积分中心</span></a></li>
+				<li class="link"><a href=""><span>运动专场</span></a></li>
+				<li class="link"><a href=""><span>微商城</span></a></li>
+			</ul>
+			<!-- 普通导航菜单 End -->
+		</div>
+		<!-- Header Menu End -->
+
+
+
+	</div>
+	<div class="clear"></div>
+	<!-- Header End -->

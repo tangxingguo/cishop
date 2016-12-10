@@ -54,18 +54,7 @@
     <tr>
 		<td align="right" nowrap="true" colspan="6">
             <div id="turn-page">
-			总计  <span id="totalRecords">11</span>
-        个记录分为 <span id="totalPages">2</span>
-        页当前第 <span id="pageCurrent">1</span>
-        页，每页 <input type="text" size="3" id="pageSize" value="10" onkeypress="return listTable.changePageSize(event)">
-        <span id="page-link">
-          <a href="javascript:listTable.gotoPageFirst()">第一页</a>
-          <a href="javascript:listTable.gotoPagePrev()">上一页</a>
-          <a href="javascript:listTable.gotoPageNext()">下一页</a>
-          <a href="javascript:listTable.gotoPageLast()">最末页</a>
-          <select id="gotoPage" onchange="listTable.gotoPage(this.value)">
-            <option value="1">1</option><option value="2">2</option>          </select>
-        </span>
+			<?php echo $pageinfo;?>
       </div>
       </td>
     </tr>
