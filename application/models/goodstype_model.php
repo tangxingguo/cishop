@@ -9,6 +9,14 @@ class Goodstype_model extends CI_Model
 		return $this->db->insert(self::TBL_GT, $data);
 	}
 	
+	//获取所有商品类型
+	public function get_all_types()
+	{
+		$query = $this->db->get(self::TBL_GT);
+		return $query->result_array();
+	}
+	
+	
 	//获取分页数据
 	public function list_goodstype($limit, $offset)
 	{

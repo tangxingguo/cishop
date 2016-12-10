@@ -3,9 +3,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title></title>
-	<link href="styles/general.css" rel="stylesheet" type="text/css" />
-	<link href="styles/main.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/utils.js"></script>
+<link href="<?php echo base_url('application/views/styles/general.css');?>" rel="stylesheet" type="text/css" />
+  <link href="<?php echo base_url('application/views/styles/main.css');?>" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<?php echo base_url('application/views/js/utils.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('public/js/jquery-1.8.3.min.js');?>"></script>
+
+
 	<script type="text/javascript" src="js/selectzone.js"></script>
 	<script type="text/javascript" src="js/colorselector.js"></script>
 	<script type="text/javascript" src="js/calendar.php?lang="></script>
@@ -31,7 +34,7 @@
 
     <!-- tab body -->
     <div id="tabbody-div">
-      <form enctype="multipart/form-data" action="" method="post" name="theForm"> 
+      <form enctype="multipart/form-data" action="<?php echo site_url('admin/goods/insert');?>" method="post" name="theForm"> 
         <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
 		 
 		 <!-- 通用信息 -->
@@ -51,20 +54,12 @@
 				<td>
 					<select name="cat_id" onchange="hideCatDiv()">
 						<option value="0">请选择...</option>
-						<option value="1">手机类型</option>
-						<option value="5">&nbsp;&nbsp;&nbsp;&nbsp;双模手机</option>
-						<option value="2">&nbsp;&nbsp;&nbsp;&nbsp;CDMA手机</option>
-						<option value="3" selected="ture">&nbsp;&nbsp;&nbsp;&nbsp;GSM手机</option>
-						<option value="4">&nbsp;&nbsp;&nbsp;&nbsp;3G手机</option>
-						<option value="12">充值卡</option>
-						<option value="15">&nbsp;&nbsp;&nbsp;&nbsp;联通手机充值卡</option>
-						<option value="13">&nbsp;&nbsp;&nbsp;&nbsp;小灵通/固话充值卡</option>
-						<option value="14">&nbsp;&nbsp;&nbsp;&nbsp;移动手机充值卡</option>
-						<option value="6">手机配件</option>
-						<option value="8">&nbsp;&nbsp;&nbsp;&nbsp;耳机</option>
-						<option value="9">&nbsp;&nbsp;&nbsp;&nbsp;电池</option>
-						<option value="11">&nbsp;&nbsp;&nbsp;&nbsp;读卡器和内存卡</option>
-						<option value="7">&nbsp;&nbsp;&nbsp;&nbsp;充电器</option>
+						<?php foreach($cates as $cate) : ?>
+						<option value="<?php echo $cate['cat_id'];?>">
+							<?php echo str_repeat('&nbsp;&nbsp;',$cate['level'])?>
+							<?php echo $cate['cat_name'];?>
+						</option>
+						<?php endforeach;?>      
 					</select>
                  </td>
 			</tr>
@@ -73,17 +68,9 @@
 				<td>
 					<select name="brand_id" onchange="hideBrandDiv()">
 						<option value="0">请选择...</option>
-						<option value="1" selected="">诺基亚</option>
-						<option value="10">金立</option>
-						<option value="9">联想</option>
-						<option value="8">LG</option>
-						<option value="7">索爱</option>
-						<option value="6">三星</option>
-						<option value="5">夏新</option>
-						<option value="4">飞利浦</option>
-						<option value="3">多普达</option>
-						<option value="2">摩托罗拉</option>
-						<option value="11">  恒基伟业</option>
+						<?php foreach($brands as $v) :?>
+							<option value="<?php echo $v['brand_id'];?>"><?php echo $v['brand_name'];?></option>
+						<?php endforeach;?>
 					</select>
 				</td>
 			</tr>
@@ -122,7 +109,7 @@
           <tr id="promote_4">
             <td class="label" id="promote_5">促销日期：</td>
             <td id="promote_6">
-              <input name="promote_start_date" type="text" id="promote_start_date" size="12" value="2009-06-01" readonly="readonly"><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('promote_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="选择" class="button"> - <input name="promote_end_date" type="text" id="promote_end_date" size="12" value="2014-11-30" readonly="readonly"><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('promote_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="选择" class="button">
+              <input name="promote_start_time" type="text" id="promote_start_date" size="12" value="2009-06-01" readonly="readonly"><input name="selbtn1" type="button" id="selbtn1" onclick="return showCalendar('promote_start_date', '%Y-%m-%d', false, false, 'selbtn1');" value="选择" class="button"> - <input name="promote_end_time" type="text" id="promote_end_date" size="12" value="2014-11-30" readonly="readonly"><input name="selbtn2" type="button" id="selbtn2" onclick="return showCalendar('promote_end_date', '%Y-%m-%d', false, false, 'selbtn2');" value="选择" class="button">
             </td>
           </tr>
           <tr>
@@ -146,7 +133,7 @@
         <!-- 详细描述 -->
         <table width="90%" id="detail-table" style="display: none;">
           <tbody><tr>
-            <td><input type="hidden" id="goods_desc" name="goods_desc" value="" style="display:none"><input type="hidden" id="goods_desc___Config" value="" style="display:none"><iframe id="goods_desc___Frame" src="../includes/fckeditor/editor/fckeditor.html?InstanceName=goods_desc&amp;Toolbar=Normal" width="100%" height="320" frameborder="0" scrolling="no" style="margin: 0px; padding: 0px; border: 0px; background-color: transparent; background-image: none; width: 100%; height: 320px;"></iframe></td>
+            <td><input type="hidden" id="goods_desc" name="goods_desc" value="" style="display:none"><input type="hidden" id="goods_desc___Config" value="" style="display:none"><iframe id="goods_desc___Frame" src="<?php echo base_url('application/third_party/fckeditor/editor/fckeditor.html') .'?InstanceName=goods_desc'?>" width="100%" height="320" frameborder="0" scrolling="no" style="margin: 0px; padding: 0px; border: 0px; background-color: transparent; background-image: none; width: 100%; height: 320px;"></iframe></td>
           </tr>
         </tbody></table>
 
@@ -204,18 +191,11 @@
 				<tr>
 					<td class="label">商品类型：</td>
 					<td>
-						<select name="goods_type" onchange="getAttrList(32)">
+						<select name="goods_type" id = "switch_type">
 							<option value="0">请选择商品类型</option>
-							<option value="1">书</option>
-							<option value="2">音乐</option>
-							<option value="3">电影</option>
-							<option value="4">手机</option>
-							<option value="5">笔记本电脑</option>
-							<option value="6">数码相机</option>
-							<option value="7">数码摄像机</option>
-							<option value="8">化妆品</option>
-							<option value="9" selected="true">精品手机</option>
-							<option value="10">我的商品</option>                
+							<?php foreach($goodstypes as $v) :?>
+							<option value="<?php echo $v['type_id']?>"><?php echo $v['type_name']?></option>
+							<?php endforeach;?>                
 						</select><br>
 						<span class="notice-span" style="display:block" id="noticeGoodsType">请选择商品的所属类型，进而完善此商品的属性</span>
 					</td>
@@ -223,6 +203,8 @@
 				<tr>
 				<td id="tbody-goodsAttr" colspan="2" style="padding:0">
 					<table width="100%" id="attrTable">
+						
+						<!--
 						<tbody>
 							<tr>
 								<td class="label">上市日期</td>
@@ -629,6 +611,7 @@
 									</td>
 								</tr>
 							</tbody>
+						-->
 						</table>
 					</td>
 			 </tr>
@@ -661,7 +644,7 @@
 
         <div class="button-div">
           <input type="hidden" name="goods_id" value="32">
-                    <input type="button" value=" 确定 " class="button" onclick="validate('32')">
+                    <input type="submit" value=" 确定 " class="button">
           <input type="reset" value=" 重置 " class="button">
         </div>
         <input type="hidden" name="act" value="update">
@@ -673,7 +656,7 @@
 <div id="footer">
 	版权所有 &copy; 2006-2013 传智播客 - PHP培训 - 
 </div>
-<script type="text/javascript" src="js/tab.js"></script>
+<script type="text/javascript" src="<?php echo base_url('application/views/js/tab.js');?>"></script>
 <script type="text/javascript">
 	function addImg(obj){
       var src  = obj.parentNode.parentNode;
@@ -700,6 +683,15 @@
       }
   	}
 
+
+  	//ajax动态获取商品属性
+  	$("#switch_type").change(function(){
+  		// alert(this.value);
+  		var url ="<?php echo site_url('admin/goods/create_attrs_html');?>";
+  		$.get(url,{'type_id':this.value},function(data){
+  			$("#attrTable").html(data);
+  		});
+  	});
 </script>
 </body>
 </html>

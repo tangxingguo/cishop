@@ -3,19 +3,19 @@
 <head>
 <title>SHOP 管理中心 - 属性管理 </title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="styles/general.css" rel="stylesheet" type="text/css" />
-<link href="styles/main.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url('application/views/styles/general.css');?>" rel="stylesheet" type="text/css" />
+  <link href="<?php echo base_url('application/views/styles/main.css');?>" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
 <h1>
-<span class="action-span"><a href="attribute.php?act=list">商品属性</a></span>
+<span class="action-span"><a href="<?php echo site_url('admin/attribute/index');?>">商品属性</a></span>
 <span class="action-span1"><a href="index.php?act=main">SHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加属性 </span>
 <div style="clear:both"></div>
 </h1>
 
 <div class="main-div">
-  <form action="attribute.php" method="post" name="theForm" onsubmit="return validate();">
+  <form action="<?php echo site_url('admin/attribute/insert');?>" method="post" name="theForm" onsubmit="return validate();">
   <table width="100%" id="general-table">
       <tbody><tr>
         <td class="label">属性名称：</td>
@@ -26,9 +26,12 @@
       <tr>
         <td class="label">所属商品类型：</td>
         <td>
-          <select name="cat_id" onchange="onChangeGoodsType(this.value)">
+          <select name="type_id" onchange="onChangeGoodsType(this.value)">
           <option value="0">请选择...</option>
-            <option value="1">书</option><option value="2">音乐</option><option value="3">电影</option><option value="4">手机</option><option value="5">笔记本电脑</option><option value="6">数码相机</option><option value="7">数码摄像机</option><option value="8">化妆品</option><option value="9">精品手机</option><option value="10">我的商品</option>          </select> <span class="require-field">*</span>        </td>
+            <?php foreach($goodstypes as $v):?>
+            <option value="<?php echo $v['type_id'];?>"><?php echo $v['type_name'];?></option>
+            <?php endforeach; ?>
+          </select> <span class="require-field">*</span>        </td>
       </tr>
       <tr id="attrGroups" style="display: none;">
         <td class="label">属性分组：</td>
@@ -36,20 +39,6 @@
           <select name="attr_group">
                     </select>
         </td>
-      </tr>
-      <tr>
-        <td class="label"><a href="javascript:showNotice('noticeindex');" title="点击此处查看提示信息"><img src="images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>能否进行检索：</td>
-        <td>
-          <input type="radio" name="attr_index" value="0" checked="true">
-          不需要检索          <input type="radio" name="attr_index" value="1">
-          关键字检索          <input type="radio" name="attr_index" value="2">
-          范围检索          <br><span class="notice-span" style="display:block" id="noticeindex">不需要该属性成为检索商品条件的情况请选择不需要检索，需要该属性进行关键字检索商品时选择关键字检索，如果该属性检索时希望是指定某个范围时，选择范围检索。</span>
-        </td>
-      </tr>
-      <tr>
-        <td class="label">相同属性值的商品是否关联？</td>
-        <td>
-          <input type="radio" name="is_linked" value="0" checked="true"> 否          <input type="radio" name="is_linked" value="1"> 是        </td>
       </tr>
       <tr>
         <td class="label"><a href="javascript:showNotice('noticeAttrType');" title="点击此处查看提示信息"><img src="images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a>属性是否可选</td>
@@ -68,7 +57,7 @@
       <tr>
         <td class="label">可选值列表：</td>
         <td>
-          <textarea name="attr_values" cols="30" rows="5" disabled=""></textarea>
+          <textarea name="attr_value" cols="30" rows="5" disabled=""></textarea>
         </td>
       </tr>
       <tr>
@@ -88,6 +77,16 @@
 <div id="footer">
 	版权所有 &copy; 2006-2013 传智播客 - PHP培训 - </div>
 </div>
+<script>
+  /**
+ * 点击类型按钮时切换选项的禁用状态
+ */
+function radioClicked(n)
+{
+  document.forms['theForm'].elements["attr_value"].disabled = n > 0 ? false : true;
+}
 
+
+</script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title></title>
 	<link href="<?php echo base_url('application/views/styles/general.css');?>" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="<?php echo base_url('application/views/js/global.js');?>"></script>
+	<script type="text/javascript" src="<?php echo base_url('application/views/js/global.js');?>" rel="stylesheet" type="text/css" /></script>
 	<script type="text/javascript" src="<?php echo base_url('application/views/js/utils.js');?>"></script>
 	<script type="text/javascript" src="<?php echo base_url('application/views/js/transport.js');?>"></script>
 	<style type="text/css">
@@ -45,8 +45,8 @@
 			<ul id="menu-ul">
 				<li class="explode" key="02_cat_and_goods" name="menu"> 商品管理        
 					<ul>
-						  <li class="menu-item"><a href="goods.php?act=list" target="main-frame">商品列表</a></li>
-						  <li class="menu-item"><a href="goods.php?act=add" target="main-frame">添加新商品</a></li>
+						  <li class="menu-item"><a href="<?php echo site_url('admin/goods/index');?>" target="main-frame">商品列表</a></li>
+						  <li class="menu-item"><a href="<?php echo site_url('admin/goods/add');?>" target="main-frame">添加新商品</a></li>
 						  <li class="menu-item"><a href="<?php echo site_url('admin/category/index');?>" target="main-frame">商品分类</a></li>
 						  <li class="menu-item"><a href="comment_manage.php?act=list" target="main-frame">用户评论</a></li>
 						  <li class="menu-item"><a href="<?php echo site_url('admin/brand/index');?>" target="main-frame">商品品牌</a></li>
